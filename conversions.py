@@ -35,7 +35,7 @@ def convert(base_currency: str, target_currency: str, amount: float):
 
     if response.status_code == 200:
         data = response.json()
-        return data  # Return the conversion data
+        return data["rates"][target_currency]["rate_for_amount"]  # Return the conversion data
     else:
         print(f"Failed to retrieve data. Status code: {response.status_code}")
         return None
