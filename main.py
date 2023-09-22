@@ -25,12 +25,14 @@ reply_keyboard = ReplyKeyboardMarkup(currency_buttons, one_time_keyboard=True)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_name = update.effective_user.full_name
-    await update.message.reply_text(f"Hello, {user_name}\n To look at all available functions click on /help",
+    await update.message.reply_text(f"Hello, {user_name}💕💕💕💕\nTo look at all available functions click on /help",
                                     reply_markup=ReplyKeyboardRemove())
 
 
 async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text("Call /convert to start you conversion from base to target currency")
+    await update.message.reply_text("Call /convert to start you conversion from base to target currency\n"
+                                    "Call /get_useful_info to get really useful information for today\n"
+                                    "")
 
 
 # Constants to represent states
@@ -66,6 +68,8 @@ async def get_amount(update, context):
     # Perform the conversion using your conversions module
     result = convert(base_currency, target_currency, amount)
 
+    print(type(result))
+
     await update.message.reply_text(
         f"The result of converting {amount} {base_currency} to {target_currency} is: {result}")
 
@@ -79,7 +83,7 @@ async def cancel(update, context):
 
 
 def main() -> None:
-    application = Application.builder().token("6630982386:AAGoyuOgak9o11tEJjPRRi2BOF7fbKudrgM").build()
+    application = Application.builder().token("6512119914:AAEDrvvTtgVbShLd3YgztvKDmHPBNO_7JIY").build()
     application.add_handler(CommandHandler("start", start))
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('convert', convert_start)],
